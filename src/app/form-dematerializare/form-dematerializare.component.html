@@ -1,0 +1,929 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Anexa 4</ion-title>
+    <ion-menu-toggle>
+      <ion-button>
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+    </ion-menu-toggle>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <form (submit)="getUsers()">
+      <div class="form-group">
+        <ion-item>
+          <ion-label position="floating">Introduce POD Client</ion-label>
+          <ion-input type="number" name="text" required></ion-input>
+        </ion-item>
+        <ion-button size="large" color="primary" fill="solid" type="submit">Cauta</ion-button>
+      </div>
+    </form>
+  </ion-card>
+  <ion-card class="user-card">
+    <ion-card-content>
+      <ion-list>
+        <ion-item>{{SapUsers?.Id}}</ion-item>
+        <ion-item>{{SapUsers?.NrInregDGSR}}</ion-item>
+        <ion-item>{{SapUsers?.NumeClient}}</ion-item>
+        <ion-item>{{SapUsers?.POD}}</ion-item>
+        <ion-item>{{SapUsers?.Localitate}}</ion-item>
+        <ion-item>{{SapUsers?.Bloc}}</ion-item>
+        <ion-item>{{SapUsers?.Judet}}</ion-item>
+        <ion-item>{{SapUsers?.Scara}}</ion-item>
+        <ion-item>{{SapUsers?.Strada}}</ion-item>
+        <ion-item>{{SapUsers?.Nr}}</ion-item>
+        <ion-item>{{SapUsers?.E_mail}}</ion-item>
+        <ion-item>{{SapUsers?.DataContractServicii}}</ion-item>
+        <ion-item>{{SapUsers?.DataScadentaVerifiNotif}}</ion-item>
+        <ion-item>{{SapUsers?.Telefon}}</ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+  <form [formGroup]="formularDematerializare" (ngSubmit)="sendForm()">
+    <ion-item color="light">
+      <ion-col size="6">
+        Operator economic autorizat ANRE ENGIE SERVICII SRL<br />Autorizatie
+        ANRE tip EDI, nr.15679 / 2015, valabila pana la data de 03.07.2018<br />
+        Adresa sediu: Bucuresti, str. Arh. Dumitru Harjeu nr. 57, sector 2
+        <br />Tel: 0374222270; Fax: 0374222271; <br />Email: contact.
+        servicii@ro.engie.com
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-item color="light">
+          Operator de sistem: Distrigaz Sud Retele SRL
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Nr Contract</ion-label>
+          <ion-input formControlName="NrInregDGSR" required type="number" placeholder="Numar"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Data inrg la operatorul de sistem</ion-label>
+          <ion-datetime formControlName="DataInregistareOperatorSistem" required display-format="MM/DD/YYYY"
+            placeholder="Data"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>Fisa evidenta lucrari periodice de verificare tehnica a instalatiei de
+            utilizare a gazelor naturale
+            <ion-input formControlName="FisaEvidenta" required type="number" placeholder=" Numar">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>Nr
+            <ion-input formControlName="DataContractServicii" type="number" placeholder="Numar"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>DATA CTR SERVICII
+            <ion-datetime formControlName="DataContractServicii" display-format="MM/DD/YYYY" placeholder="Data"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item color="light">
+            <ion-label>De completat cu informatii solicitate</ion-label>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item color="primary"> 1. Cod Loc de consum POD </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item color="light">
+            <ion-input formControlName="POD" required type="number" placeholder="POD"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item color="primary">
+            2. Client final/clienti finali
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item color="light">
+            <ion-input formControlName="NumeClient" required type="text" placeholder="Nume Client"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item color="primary"> 3. Adresa locului de consum </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-input formControlName="Strada" required type="text" placeholder="Strada"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-input formControlName="Nr" required type="number" placeholder="Nr"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-input formControlName="Bloc" required type="text" placeholder="Bloc"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-input formControlName="Scara" required type="text" placeholder="Scara"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-input formControlName="Apartament" required type="text" placeholder="Apartment"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-label>Oras</ion-label>
+            <ion-select formControlName="Localitate" value="oras" okText="Select" cancelText="Dismiss">
+              <ion-select-option>Bucuresti</ion-select-option>
+              <ion-select-option>Ploiest</ion-select-option>
+              <ion-select-option>Urziceni</ion-select-option>
+              <ion-select-option>Buzau</ion-select-option>
+              <ion-select-option>Ploiest</ion-select-option>
+              <ion-select-option>Urziceni</ion-select-option>
+              <ion-select-option>Buzau</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-input formControlName="Telefon" required type="number" placeholder="Telefon" required></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-input formControlName="E_mail" required type="email" placeholder="E-mail" required></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item color="primary">4. Contract prestări servicii </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-input formControlName="NrContractServicii" required type="number" placeholder="Numar"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-datetime formControlName="DataContractServicii" display-format="MM/DD/YYYY" placeholder="Data"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item color="primary">
+            5. Documentație efectuare verificare tehnică
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-input formControlName="DataDocumentatieTehnica" required type="number" placeholder="Numar"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-datetime formControlName="DataScadentaVerifiNotif" display-format="MM/DD/YYYY" placeholder="Data"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-input formControlName="NuDetine" required type="text" placeholder="Nu detine"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="9">
+          <ion-item color="primary">
+            6. Data ultimei verificari tehnice efectuate la locul de consum,
+            mentionata in notificare
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-datetime formControlName="DataUltimeiVerificari" display-format="MM/DD/YYYY" placeholder="Data"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col size="9">
+          <ion-item color="primary">
+            7. Data scadenta a verificarii tehnice periodice a instalatiei de
+            utilizare notificata de furnizorul de gaze naturale
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-datetime formControlName="DataScadentaVerificareTehnica" display-format="MM/DD/YYYY" placeholder="Data"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item color="primary">
+            8. Instalatorul autorizat din cadrul operatorului economic autorizat
+            de ANRE care efectueaza verificarea tehnica
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-input formControlName="NumeInstalator" required type="text" placeholder="Nume Prenume"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-input formControlName="LegitimatieInstalator" required type="text" placeholder="Legitimatia tip"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-input formControlName="NrLegitimatie" required type="number" placeholder="Numar Legitimatie"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-datetime formControlName="AnEmitereLegitimatie" display-format="MM/DD/YYYY" placeholder="Anul"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-datetime formControlName="ValabilitateLegitimatie" display-format="MM/DD/YYYY" placeholder="Valabila pana la"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item color="primary">9. Aparate consumatoare de combustibili gazosi
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item color="light">Notificate de furnizorul de gaze naturale</ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-label>Tip</ion-label>
+            <ion-input formControlName="NotificateDeFurnizorulDeGazeTIP" required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-label>Nr.</ion-label>
+            <ion-input formControlName="NotificateDeFurnizorulDeGazeNR" required type="number" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item color="light">
+            <ion-label>Debit nominal(mc/h)</ion-label>
+            <ion-input formControlName="NotificateDeFurnizorulDeGazeDEBITNOMINAL" required type="number" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item color="light">Identificate la locul de consum</ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-label>Tip</ion-label>
+            <ion-input formControlName="IdentificateDeFurnizorulDeGazeTIP" required type="number" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-label>Nr.</ion-label>
+            <ion-input formControlName="IdentificateDeFurnizorulDeGazeNR" required type="number" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item color="light">
+            <ion-label>Debit nominal(mc/h)</ion-label>
+            <ion-input formControlName="IdentificateDeFurnizorulDeGazeDEBITNOMINAL" required type="number" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item color="light">
+            <ion-label>Ramas in IUGN</ion-label>
+            <ion-input formControlName="RamasIUGN" required type="number" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item color="primary">10. Identificarea sistemului / mijlocului de masurare a gazelor
+            naturale, cu ocazia interventiei in instalatia de utilizare gaze
+            naturale
+          </ion-item>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item color="light">
+            <ion-label>Tip Contor</ion-label>
+            <ion-input formControlName="IdentificareTipContor" required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item color="light">
+            <ion-label>Convertor</ion-label>
+            <ion-input formControlName="IdentificareConvertor" required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item color="light">
+            <ion-label>Sigiliu racord contor:</ion-label>
+            <ion-input formControlName="IdentificareSigiliuRacord" required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <p>
+            1. Verificarea tehnica a instalatiei de utilizare a gazelor naturale
+            se realizeaza in urmatoarele situatii:
+          </p>
+          <ion-item color="dark"> Tabelul Nr.1 </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item color="light"> Tip lucrare </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item color="light"> De completat </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item color="primary">La interval de maxim 2 ani </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item color="light">
+            <ion-input formControlName="VerificareTehnicaIntervalMaxim2ani" required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item color="primary">La cererea clientului final </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item color="light">
+            <ion-input formControlName="VerificareTehnicaLaCerereaClientului" required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item color="dark"> Tabelul Nr.2 </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item color="light"> Tip lucrare </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light"> De completat </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light"> Observatii </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item color="primary">Verificarea tehnica a instalatiei de utilizare a gazelor
+            naturale</ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-input formControlName="VerificareTehnica" required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-input formControlName="VerificareTehnicaObservatii" required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item color="primary">La cererea clientului final </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-input formControlName="VerificareTehnicaLaCerereaClientuluiTabel2" required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-input formControlName="VerificareTehnicaLaCerereaClientuluiTabel2Observatii" required type="text"
+              placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <p>
+            2. Operatiunile care s-au realizat in cazul verificarii tehnice a
+            instalatiei de utilizare a gazelor naturale sunt prezentate in
+            tabelul nr. 3:
+          </p>
+          <ion-item color="dark"> Tabelul Nr.3 </ion-item>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item color="primary"> Operatiuni </ion-item>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item color="primary"> De completat</ion-item>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item color="primary">
+            1. Verificarea arzatoarelor si a starii imbinarilor si garniturilor
+            de etansare aferente
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">DA
+          <ion-checkbox [checked]="!isdisabled" color="danger" formControlName="VerificareaArzatoarelorDA"></ion-checkbox>
+        </ion-col>
+        <ion-col size="1">NU
+          <ion-checkbox formControlName="VerificareaArzatoarelorNU"></ion-checkbox>
+        </ion-col>
+        <ion-col size="2">
+          Nu este cazul
+          <ion-checkbox formControlName="VerificareaArzatoarelorNuEsteCazul"></ion-checkbox>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item color="primary">
+            2.Verificarea stabilitatii conductelor montate aparent pe suporturi
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">DA
+          <ion-checkbox formControlName="VerificareaStabilitatiiDA"></ion-checkbox>
+        </ion-col>
+        <ion-col size="1">NU
+          <ion-checkbox formControlName="VerificareaStabilitatiiNU"></ion-checkbox>
+        </ion-col>
+        <ion-col size="2">
+          Nu este cazul
+          <ion-checkbox formControlName="VerificareaStabilitatiiNuEsteCazul"></ion-checkbox>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item color="primary">
+            3. Verificarea etanseitatii imbinari conductelor si armaturilor la
+            presiunea de lucru a gazului din instalatie, cu spuma de apa cu
+            sapun sau cu alte tehnologii de verificare a etanseitatii
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">DA
+          <ion-checkbox #checkbox formControlName="VerificareaStabilitatiiNuEsteCazul"></ion-checkbox>
+        </ion-col>
+        <ion-col size="1">NU
+          <ion-checkbox formControlName="VerificareaStabilitatiiNuEsteCazul"></ion-checkbox>
+        </ion-col>
+        <ion-col size="2">
+          Nu este cazul
+          <ion-checkbox formControlName="VerificareaStabilitatiiNuEsteCazul"></ion-checkbox>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item color="primary">
+            4. Verificarea functionarii aparatelor de masurare, control, reglare
+            si siguranta
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">DA
+          <ion-checkbox formControlName="VerificareaEtanseitatiiDA"></ion-checkbox>
+        </ion-col>
+        <ion-col size="1">NU
+          <ion-checkbox formControlName="VerificareaEtanseitatiiNU"></ion-checkbox>
+        </ion-col>
+        <ion-col size="2">
+          Nu este cazul
+          <ion-checkbox formControlName="VerificareaEtanseitatiiNuEsteCazul"></ion-checkbox>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item color="primary">
+            5. Demontarea / Debransarea aparatelor consumatoare de combustibili
+            gazosi fara aprobare legala a instalatiilor de utilizare a gazelor
+            naturale aferente
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="primary"> Tipul aparatului </ion-item>
+          <ion-item color="light">
+            <ion-input formControlName="DemontareDebransareTipAparat" required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="primary"> Debit nominal(m3/h) </ion-item>
+          <ion-item color="light">
+            <ion-input formControlName="DemontareDebransareDebitNominal" required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">DA
+          <ion-checkbox formControlName="DemontareDebransareDA"></ion-checkbox>
+        </ion-col>
+        <ion-col size="1">NU
+          <ion-checkbox formControlName="DemontareDebransareNU"></ion-checkbox>
+        </ion-col>
+        <ion-col size="2">
+          Nu este cazul
+          <ion-checkbox formControlName="DemontareDebransareNuEsteCazul"></ion-checkbox>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item color="primary">
+            6. Verificarea functionarii echipamentului de reglare din
+            instalatiile de utilizare
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">DA
+          <ion-checkbox formControlName="VerificareaFunctionariiEchipamentuluiDA"></ion-checkbox>
+        </ion-col>
+        <ion-col size="1">NU
+          <ion-checkbox formControlName="VerificareaFunctionariiEchipamentuluiNU"></ion-checkbox>
+        </ion-col>
+        <ion-col size="2">
+          Nu este cazul
+          <ion-checkbox formControlName="VerificareaFunctionariiEchipamentuluiNuEsteCazul"></ion-checkbox>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item color="primary">
+            7. Verificarea starii rasuflatorilor si a caminelor existente
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">DA
+          <ion-checkbox formControlName="VerificareaStariiRasuflatorilorDA"></ion-checkbox>
+        </ion-col>
+        <ion-col size="1">NU
+          <ion-checkbox formControlName="VerificareaStariiRasuflatorilorNU"></ion-checkbox>
+        </ion-col>
+        <ion-col size="2">
+          Nu este cazul
+          <ion-checkbox formControlName="VerificareaStariiRasuflatorilorNuEsteCazul"></ion-checkbox>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item color="primary">
+            8. Verificarea documentelor, prezentate de client, din care să reiasă ca a fost efectuată curăţarea
+            coşurilor şi a canalelor de evacuare a gazelor de ardere de către operatorii economici autorizaţi, emise
+            cu maximum 6 luni înainte de data verificării tehnice a instalaţiei de utilizare a gazelor naturale
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">DA
+          <ion-checkbox formControlName="VerificareaDocumentelorPrezentateDeclientDA"></ion-checkbox>
+        </ion-col>
+        <ion-col size="1">NU
+          <ion-checkbox formControlName="VerificareaDocumentelorPrezentateDeclientNU"></ion-checkbox>
+        </ion-col>
+        <ion-col size="2">
+          Nu este cazul
+          <ion-checkbox formControlName="VerificareaDocumentelorPrezentateDeclientNuEsteCazul"></ion-checkbox>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item color="primary">
+            9. Verificarea starii constructiilor care adapostesc statiile si
+            posturi de reglare sau reglare-masurare
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">DA
+          <ion-checkbox formControlName="VerificareaStariiConstructiilorStatiiSiPosturiDA"></ion-checkbox>
+        </ion-col>
+        <ion-col size="1">NU
+          <ion-checkbox formControlName="VerificareaStariiConstructiilorStatiiSiPosturiNU"></ion-checkbox>
+        </ion-col>
+        <ion-col size="2">
+          Nu este cazul
+          <ion-checkbox formControlName="VerificareaStariiConstructiilorStatiiSiPosturiNuEsteCazul"></ion-checkbox>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item color="primary">
+            10. Verificarea documentelor prezentate de client, care sa ateste
+            efectuarea in termen a verificarii tehnice periodice a aparatelor
+            consumatoare de combustibili gazosi de catre operatorii economici
+            autorizati de Inspectia de Stat pentru Controlul Cazanelor,
+            Recipientelor sub Presiune si Instalatiilor de Ridicat, ISCIR.
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">DA
+          <ion-checkbox formControlName="VerificareaDocumentelorPrezentateDeClientISCIRDA"></ion-checkbox>
+        </ion-col>
+        <ion-col size="1">NU
+          <ion-checkbox formControlName="VerificareaDocumentelorPrezentateDeClientISCIRNU"></ion-checkbox>
+        </ion-col>
+        <ion-col size="2">
+          Nu este cazul
+          <ion-checkbox formControlName="VerificareaDocumentelorPrezentateDeClientISCIRNuEsteCazul"></ion-checkbox>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item color="primary">
+            11. Verificarea tehnica a instalatiei comune de utilizare a gazelor
+            naturale care deserveste mai multi clienti finali, cuprinsa intre
+            statia sau postul de reglare si sistemele/mijloacele de masurare a
+            gazelor naturale
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">DA
+          <ion-checkbox formControlName="VerificareTehnicaInstalațieComuneDeUtilizareDA"></ion-checkbox>
+        </ion-col>
+        <ion-col size="1">NU
+          <ion-checkbox formControlName="VerificareTehnicaInstalațieComuneDeUtilizareNU"></ion-checkbox>
+        </ion-col>
+        <ion-col size="2">
+          Nu este cazul
+          <ion-checkbox formControlName="VerificareTehnicaInstalațieComuneDeUtilizareNuEsteCazul"></ion-checkbox>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item color="primary">
+            12. Verificarea faptului ca racordul flexibil montat in intalatia de
+            utilizare este in termen de valabilitate, avand in vedere durata
+            normala de utilizare specificata in prescriptiile tehnice ale
+            producatorului
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">DA
+          <ion-checkbox formControlName="VerificareRacordFlexibilValabilitateDA"></ion-checkbox>
+        </ion-col>
+        <ion-col size="1">NU
+          <ion-checkbox formControlName="VerificareRacordFlexibilValabilitateNU"></ion-checkbox>
+        </ion-col>
+        <ion-col size="2">
+          Nu este cazul
+          <ion-checkbox formControlName="VerificareRacordFlexibilValabilitateNuEsteCazul"></ion-checkbox>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item color="primary">
+            13. Verificarea faptului ca detectorul/detectoarele automat/automate
+            de gaze montat/montate la locul de consum este/sunt in termen de
+            valabilitate, avand in vedere durata normala de utilizare
+            specificate in prescriptiile tehnice ale producatorului
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">DA
+          <ion-checkbox></ion-checkbox>
+        </ion-col>
+        <ion-col size="1">NU
+          <ion-checkbox></ion-checkbox>
+        </ion-col>
+        <ion-col size="2">
+          Nu este cazul
+          <ion-checkbox></ion-checkbox>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item color="primary">
+            14. Verificarea existentei instructiunilor de utilizare a gazelor
+            naturale, intocmite conform prevederilor Procedurii privind
+            proiectarea, verificare, executia, receptia si punerea in functiune
+            a instalatiilor de utilizare a gazelor naturale, aprobata prin
+            Ordinul ANRE nr.32/2012
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">DA
+          <ion-checkbox></ion-checkbox>
+        </ion-col>
+        <ion-col size="1">NU
+          <ion-checkbox></ion-checkbox>
+        </ion-col>
+        <ion-col size="2">
+          Nu este cazul
+          <ion-checkbox></ion-checkbox>
+        </ion-col>
+        <ion-col size="12">
+          Nota<br />
+          (1). Operatiunile prevazute in tabelul nr.3 sunt obligatorii, iar in
+          situatia in care una sau mai multe dintre acestea nu se efectueaza, OE
+          justifica pentru fiecare operatiune in parte, motivele neindeplinirii
+          obligatiei.<br />
+          (2). In situatia in care se constata lipsa instructiunilor de
+          utilizare a gazelor naturale, OE are obligatia sa predea clientului
+          final, cu titlul gratuit, un exemplar al acestora
+        </ion-col>
+        <ion-col size="2">
+          <ion-checkbox></ion-checkbox>
+        </ion-col>
+        <ion-col size="9">
+          <ion-item>Confirm ca au fost efectuate toate operatiile enumare in Tabelul
+            nr.3</ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-checkbox></ion-checkbox>
+        </ion-col>
+        <ion-col size="9">
+          <ion-item>Confirm ca am primit un exemplar al instructiunilor de utilizare a
+            gazelor naturale</ion-item>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item>Semnatura</ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item color="dark">
+            3. Defectele constatate se mentioneaza in tabelul nr. 4 Tabelul Nr.4
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="primary">Defecte constatate</ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="primary">Modul de remediere a defectelor</ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item color="primary">De completat daca s-au remediat defectele</ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item></ion-item>
+        </ion-col>
+        <ion-col size="1">
+          <ion-item color="light"> DA </ion-item>
+        </ion-col>
+        <ion-col size="5">
+          <ion-item color="light"> NU </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-input required type="text" placeholder="Completeaza defecte constatate"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="light">
+            <ion-input required type="text" placeholder="Completeaza modul de remediere"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">
+          <ion-item color="light">
+            <ion-input required type="text" placeholder="da"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="5">
+          <ion-item color="light">
+            <ion-input required type="text" placeholder="nu"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item color="dark">
+            4. Conditii tehnice de functionare: Tabelul Nr.5
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item color="primary">
+            Instalatia de utilizare a gazelor naturale indeplineste conditiile
+            tehnice de functionare in siguranta prevazute in prevederile
+            normelor tehnice din domeniul gaze naturale
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="primary"> De completat </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item>DA
+            <ion-checkbox></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item>NU
+            <ion-checkbox></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col size="5">
+          <ion-item color="light">
+            <ion-input required type="text" placeholder="Observatii"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          (5) Nota: Se specificare care sunt conditiile de functionare in
+          siguranta neindeplinite si posibilitatile de remediere
+        </ion-col>
+        <ion-col size="12">
+          <ion-item color="dark"> Tabelul Nr.6 </ion-item>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item color="primary">
+            Aparatele consumatoare de combustibili gazosi
+          </ion-item>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item color="primary">
+            Documentul care atesta curatirea cosurilor si a canalelor de
+            evacuare a gazerelor de ardere
+          </ion-item>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item color="primary">
+            Documentul care atesta verificarea aparatelor consumatoare de
+            combustibili gazosi
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="2">
+          <ion-item color="primary"> Tip aparat </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="primary"> Debit nominal(m3/h) </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="primary"> Nr. </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="primary"> Data </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="primary"> Nr. </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="primary"> Data </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-input required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-input required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-input required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-input required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-input required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item color="light">
+            <ion-input required type="text" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item color="dark"> Concluzii Tabelul Nr.7 </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item color="primary">
+            Pe baza documentelor prezentate si a operatiunilor realizate in
+            cadrul verificarii tehnice se constata ca instalatia de utilizare a
+            gazelor naturale respecta prevederile normelor tehnice si poate
+            functiona in conditii de siguranta
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item color="primary"> De completat </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item>DA
+            <ion-checkbox formControlName="Tabel7DA"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-item>NU
+            <ion-checkbox formControlName="Tabel7NU"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col size="5">
+          <ion-item color="light">
+            <ion-input required type="text" placeholder="Observatii"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          Nota<br />
+          Se specifica prevederile normelor tehnice nerespectate si masruile
+          intreprinse pentru conformare, in situatia in care vechicularea
+          gazelor naturale a fost intrerupta, se specifica inclusiv motivele
+          intreruperii.<br />
+          <br />
+          Prezenta fisa se intocmeste in 3 exemplare, cate unul pentru:<br />
+          a) Clientul final/clientii finali;<br />
+          b) Operatorul economic autorizat ANRE pentru executia instalatiei de
+          utilizare a gazelor naturale;<br />
+          c) Operatorul de sistem<br />
+          Prezentarea fisa se preda clientului final/clientilor finali dupa ce
+          este inregistrata la operatorul de sistem.Orice modificare adusa
+          instalatiei de utilizare ulterior verificarii tehnice cade in
+          raspunderea clientului final/clientilor finali.<br />
+          Reprezentatul legal/imputernicitul operatorului economic autorizat
+          ANRE pentru executia instalatiei de utilizare a gazelor naturale.<br />
+        </ion-col>
+        <ion-col size="12">
+          Prin semnatura prezentei fisa, clientul confirma ca realizarea lucsirarilor de catre instalatorul
+          autorizat,
+          salariat al Engie Servicii SRL, NU a adus atingeri proprietatii sale.
+        </ion-col>
+        <ion-col size="4" #sigContainer1>
+          <ion-item color="primary"> Clientul final/clientii finali</ion-item>
+          <ion-item color="secondary">
+            <signature-field color="light" formControlName="semnaturaClientFinal"></signature-field>
+          </ion-item>
+          <ion-item>
+            <ion-button color="danger" type="button" (click)="sigs.first.clear()" [disabled]="!formularDematerializare.controls.semnaturaClientFinal.valid">Sterge
+              semnatura</ion-button>
+          </ion-item>
+        </ion-col>
+        <ion-col size="4" #sigContainer2>
+          <ion-item color="primary"> Persoana autorizata</ion-item>
+          <ion-item color="secondary">
+            <signature-field color="light" formControlName="semmaturaPersoanaAutorizata"></signature-field>
+          </ion-item>
+          <ion-item>
+            <ion-button color="danger" type="button" (click)="secondSig.clear()" [disabled]="!formularDematerializare.controls.semmaturaPersoanaAutorizata.valid">Sterge
+              semnatura
+              2</ion-button>
+          </ion-item>
+        </ion-col>
+        <ion-col size="4" #sigContainer3>
+          <ion-item color="primary"> Confirm ca am primit un exemplar pdf</ion-item>
+          <ion-item color="secondary">
+            <signature-field formControlName="semnaturaClientAcordfinal"></signature-field>
+          </ion-item>
+          <ion-item>
+            <ion-button color="danger" type="button" (click)="sigs.last.clear()" [disabled]="!formularDematerializare.controls.semnaturaClientAcordfinal.valid">Sterge
+              semnatura
+              3</ion-button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-button type="submit">Trimite formular</ion-button>
+  </form>
+  <ion-item>
+    <!-- <p>
+        {{ formularDematerializare.value | json}}
+      </p> -->
+  </ion-item>
+  <!-- </ion-card> -->
+</ion-content>

@@ -1,0 +1,43 @@
+page-login {
+    .content-md {
+        background-color: aqua !important;
+    }
+}
+
+
+.card-background-page {
+    ion-card {
+        padding-top: 150px;
+        text-align: center;
+        height: 100%;
+        margin: 0;
+
+    }
+
+    ion-title {
+        text-align: center;
+    }
+
+    ion-button {
+        margin-top: 50px;
+    }
+
+    .input-class {
+        width: 230px;
+        margin: 0 auto;
+    }
+
+}
+
+.form-group {
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.logo {
+    height: 120px;
+    width: 170px;
+    margin: 0 auto;
+}
+

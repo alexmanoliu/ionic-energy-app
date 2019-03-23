@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Dashboard </ion-title>
+    <ion-menu-toggle>
+      <ion-button>
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+    </ion-menu-toggle>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-col col-3>
+    <ion-card class="angajat-engie" color="primary">
+      <ion-card-header>
+        Angajat ENGIE
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list *ngFor="let angajat of angajati | keyvalue" color="primary">
+          <ion-item color="primary" class="info-angajat"> {{ angajat.key }} : {{ angajat.value }}</ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ion-col>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <ion-card color="medium">
+          <div class="anexa1">Form dematerializare</div>
+          <ion-button expand="full" fill="outline" color="danger">Anexa1</ion-button>
+          <ion-checkbox color="danger" type="boolean"></ion-checkbox>
+        </ion-card>
+      </ion-col>
+      <ion-col col-12>
+        <ion-card color="medium">
+          <div class="anexa2">Form dematerializare</div>
+          <ion-button expand="full" fill="outline" color="danger">Anexa2</ion-button>
+        </ion-card>
+      </ion-col>
+      <ion-col col-12>
+        <ion-card color="medium">
+          <div class="anexa3">Form dematerializare</div>
+          <ion-button expand="full" fill="outline" color="danger">Anexa3</ion-button>
+        </ion-card>
+      </ion-col>
+      <ion-col col-12>
+        <ion-card color="primary">
+          <div class="anexa4">Form dematerializare</div>
+          <ion-button expand="full" color="danger" (click)="anexa4()">Anexa4</ion-button>
+        </ion-card>
+      </ion-col>
+
+      <ion-button size="large" (click)="getUsers()">
+        Click me
+      </ion-button>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,25 @@
+<!-- <ion-header>
+  <ion-toolbar color="primary">
+    <ion-menu-toggle>
+      <ion-button>
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+    </ion-menu-toggle>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="card-background-page">
+  <ion-card>
+    <img class="logo" src="assets/img/engie.png" alt="">
+    <ion-item></ion-item>
+    <form (submit)="onSubmit()">
+      <div class="form-group">
+        <ion-item class="input-class">
+          <ion-label position="floating">Introduce Marca Angajat</ion-label>
+          <ion-input type="number" name="text" required></ion-input>
+        </ion-item>
+        <ion-button size="medium" size="default" shape="round" color="primary" fill="solid" value="Login" type="submit">Login</ion-button>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>
